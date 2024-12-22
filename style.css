@@ -1,0 +1,312 @@
+/* ==============================
+    VARIABLES GLOBALES (ROOT)
+   ============================== */
+:root {
+    /* Dimensions */
+    --button-size: 50px;
+    --icon-size: 24px;
+
+    /* Couleurs principales */
+    --maincolor-1: #fff;
+    --hovercolor: #11671dd1;
+    --textcolor: #333;
+    --border-color: #ccc;
+
+    /* Ombres */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.2);
+
+    /* Mode sombre */
+    --background-dark: #121111;
+    --text-dark: #e0e0e0;
+    --box-dark: #2c2c2c;
+}
+
+/* ==============================
+    RESET ET STYLES DE BASE
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* html {
+    scroll-behavior: smooth;
+} */
+
+html,
+body {
+    height: 100%;
+    font-family: 'Geist', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+}
+
+/* ==============================
+    LAYOUT PRINCIPAL
+   ============================== */
+main {
+    padding: 10vh 0;
+    flex: 1;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.301);
+    font-size: 1.2rem;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.main-container {
+    max-width: 1750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+}
+
+/* ==============================
+    HEADER ET NAVIGATION
+   ============================== */
+header {
+    background-color: var(--maincolor-1);
+    box-shadow: 0px 2px 5px var(--shadow-color);
+    padding: 1rem 2rem;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+
+.header-logo img {
+    width: 120px;
+    transition: filter 0.3s ease;
+}
+
+.header-logo img:hover {
+    box-shadow: 0px 2px 5px var(--hovercolor);
+}
+
+/* Menu de navigation */
+
+.header-menu {
+    margin-left: auto;
+}
+
+.header-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.header-menu a {
+    position: relative;
+    text-decoration: none;
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-menu a:hover {
+    color: var(--hovercolor);
+}
+
+/* Animation soulignement menu */
+
+.header-menu a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--hovercolor);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header-menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ==============================
+    COMPOSANTS
+   ============================== */
+
+/* Bouton Dark Mode */
+
+#dark-mode-toggle {
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: 50%;
+    background-color: var(--maincolor-1);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+    box-shadow: 0 6px 10px var(--shadow-hover);
+    transform: scale(1.1);
+}
+
+#dark-mode-toggle img {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    position: absolute;
+    transition: opacity 0.3s ease;
+}
+
+#icon-sun {
+    opacity: 0;
+}
+
+#icon-moon {
+    opacity: 1;
+}
+
+/* Boxes */
+
+.box {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    scroll-snap-align: start;
+}
+
+.one {
+    background-color: var(--maincolor-1);
+}
+
+.two .three{
+    background-color: #ffffff00;
+}
+
+/* Styles pour la boîte qui apparaît */
+
+.scroll-box1 {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 1.2s ease-out;
+    padding: 10vh;
+    background-color: #12111163;
+}
+
+.scroll-box1.appear {
+    opacity: 1;
+    transform: translateX(-50%);
+}
+
+.scroll-box2 {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 1.2s ease-out;
+    padding: 10vh;
+    background-color: #12111163;
+}
+
+.scroll-box2.appear {
+    opacity: 1;
+    transform: translateX(30%);
+}
+
+/* ==============================
+    MODE SOMBRE
+   ============================== */
+
+/* Styles généraux dark mode */
+
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+/* Header dark mode */
+
+body.dark-mode header {
+    background-color: var(--box-dark);
+}
+
+body.dark-mode .header-menu a {
+    color: var(--text-dark);
+}
+
+body.dark-mode .header-menu a:hover {
+    color: var(--hovercolor);
+}
+
+body.dark-mode .header-logo img {
+    filter: invert(1);
+}
+
+/* Bouton dark mode */
+
+body.dark-mode #dark-mode-toggle {
+    background-color: var(--box-dark);
+    border-color: #444;
+    box-shadow: 0 4px 6px var(--shadow-hover);
+}
+
+body.dark-mode #icon-sun {
+    opacity: 1;
+}
+
+body.dark-mode #icon-moon {
+    opacity: 0;
+}
+
+/* Boxes dark mode */
+
+body.dark-mode .box.one,
+body.dark-mode .box.two,
+body.dark-mode .box.three {
+    background-color: var(--box-dark);
+    color: var(--text-dark);
+}
+
+/* ==============================
+    FOOTER 
+   ============================== */
+   
+/* footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--maincolor-1);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0px -2px 5px var(--shadow-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer p {
+    color: var(--textcolor);
+    margin: 0;
+}
+
+body.dark-mode footer {
+    background-color: var(--box-dark);
+}
+
+body.dark-mode footer p {
+    color: var(--text-dark);
+} */
